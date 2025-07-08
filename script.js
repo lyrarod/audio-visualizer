@@ -12,7 +12,179 @@ let bufferLength = null;
 let dataArray = null;
 let drawVisual = null;
 
+const spaceflight = document.getElementById("spaceflight");
+const neverbackdown = document.getElementById("neverbackdown");
+const krakenofthesea = document.getElementById("krakenofthesea");
+const overworld = document.getElementById("overworld");
+const topgear = document.getElementById("topgear");
+
+topgear.addEventListener("click", (e) => {
+  e.preventDefault();
+  topgear.disabled = true;
+  topgear.style.opacity = 0.5;
+  topgear.style.scale = "0.98";
+  topgear.style.pointerEvents = "none";
+  audio.src = "/assets/audios/top-gear-las-vegas.ogg";
+  audio.play();
+  audio.loop = true;
+  setupAudio(audio);
+  draw();
+
+  overworld.disabled = false;
+  overworld.style.opacity = 1;
+  overworld.style.scale = "1";
+  overworld.style.pointerEvents = "all";
+
+  krakenofthesea.disabled = false;
+  krakenofthesea.style.opacity = 1;
+  krakenofthesea.style.scale = "1";
+  krakenofthesea.style.pointerEvents = "all";
+
+  spaceflight.disabled = false;
+  spaceflight.style.opacity = 1;
+  spaceflight.style.scale = "1";
+  spaceflight.style.pointerEvents = "all";
+
+  neverbackdown.disabled = false;
+  neverbackdown.style.opacity = 1;
+  neverbackdown.style.scale = "1";
+  neverbackdown.style.pointerEvents = "all";
+});
+
+overworld.addEventListener("click", (e) => {
+  e.preventDefault();
+  overworld.disabled = true;
+  overworld.style.opacity = 0.5;
+  overworld.style.scale = "0.98";
+  overworld.style.pointerEvents = "none";
+  audio.src = "/assets/audios/overworld.ogg";
+  audio.play();
+  audio.loop = true;
+  setupAudio(audio);
+  draw();
+
+  topgear.disabled = false;
+  topgear.style.opacity = 1;
+  topgear.style.scale = "1";
+  topgear.style.pointerEvents = "all";
+
+  krakenofthesea.disabled = false;
+  krakenofthesea.style.opacity = 1;
+  krakenofthesea.style.scale = "1";
+  krakenofthesea.style.pointerEvents = "all";
+
+  spaceflight.disabled = false;
+  spaceflight.style.opacity = 1;
+  spaceflight.style.scale = "1";
+  spaceflight.style.pointerEvents = "all";
+
+  neverbackdown.disabled = false;
+  neverbackdown.style.opacity = 1;
+  neverbackdown.style.scale = "1";
+  neverbackdown.style.pointerEvents = "all";
+});
+
+krakenofthesea.addEventListener("click", (e) => {
+  e.preventDefault();
+  krakenofthesea.disabled = true;
+  krakenofthesea.style.opacity = 0.5;
+  krakenofthesea.style.scale = "0.98";
+  krakenofthesea.style.pointerEvents = "none";
+  audio.src = "/assets/audios/kraken-of-the-sea.ogg";
+  audio.play();
+  audio.loop = true;
+  setupAudio(audio);
+  draw();
+
+  topgear.disabled = false;
+  topgear.style.opacity = 1;
+  topgear.style.scale = "1";
+  topgear.style.pointerEvents = "all";
+
+  overworld.disabled = false;
+  overworld.style.opacity = 1;
+  overworld.style.scale = "1";
+  overworld.style.pointerEvents = "all";
+
+  spaceflight.disabled = false;
+  spaceflight.style.opacity = 1;
+  spaceflight.style.scale = "1";
+  spaceflight.style.pointerEvents = "all";
+
+  neverbackdown.disabled = false;
+  neverbackdown.style.opacity = 1;
+  neverbackdown.style.scale = "1";
+  neverbackdown.style.pointerEvents = "all";
+});
+
+neverbackdown.addEventListener("click", (e) => {
+  e.preventDefault();
+  neverbackdown.disabled = true;
+  neverbackdown.style.opacity = 0.5;
+  neverbackdown.style.scale = "0.98";
+  neverbackdown.style.pointerEvents = "none";
+  audio.src = "/assets/audios/never-back-down.ogg";
+  audio.play();
+  audio.loop = true;
+  setupAudio(audio);
+  draw();
+
+  topgear.disabled = false;
+  topgear.style.opacity = 1;
+  topgear.style.scale = "1";
+  topgear.style.pointerEvents = "all";
+
+  overworld.disabled = false;
+  overworld.style.opacity = 1;
+  overworld.style.scale = "1";
+  overworld.style.pointerEvents = "all";
+
+  krakenofthesea.disabled = false;
+  krakenofthesea.style.opacity = 1;
+  krakenofthesea.style.scale = "1";
+  krakenofthesea.style.pointerEvents = "all";
+
+  spaceflight.disabled = false;
+  spaceflight.style.opacity = 1;
+  spaceflight.style.scale = "1";
+  spaceflight.style.pointerEvents = "all";
+});
+
+spaceflight.addEventListener("click", (e) => {
+  e.preventDefault();
+  spaceflight.disabled = true;
+  spaceflight.style.opacity = 0.5;
+  spaceflight.style.scale = "0.98";
+  spaceflight.style.pointerEvents = "none";
+  audio.src = "/assets/audios/space-flight.ogg";
+  audio.play();
+  audio.loop = true;
+  setupAudio(audio);
+  draw();
+
+  topgear.disabled = false;
+  topgear.style.opacity = 1;
+  topgear.style.scale = "1";
+  topgear.style.pointerEvents = "all";
+
+  overworld.disabled = false;
+  overworld.style.opacity = 1;
+  overworld.style.scale = "1";
+  overworld.style.pointerEvents = "all";
+
+  neverbackdown.disabled = false;
+  neverbackdown.style.opacity = 1;
+  neverbackdown.style.scale = "1";
+  neverbackdown.style.pointerEvents = "all";
+
+  krakenofthesea.disabled = false;
+  krakenofthesea.style.opacity = 1;
+  krakenofthesea.style.scale = "1";
+  krakenofthesea.style.pointerEvents = "all";
+});
+
 fileInput.addEventListener("change", () => {
+  if (!fileInput.files[0]) return;
   audio.src = URL.createObjectURL(fileInput.files[0]);
   audio.play();
   audio.loop = true;
