@@ -9,7 +9,7 @@
 
 body {
   color: whitesmoke;
-  background-color: #001;
+  background-color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,19 +19,21 @@ body {
 
 .container {
   width: 100%;
-  max-width: min-content;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 1rem;
-  background-color: #0011;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 16px #fff7;
+  row-gap: 1.5rem;
+  background-color: transparent;
+  box-shadow: 0 1rem 1rem #0007;
+  backdrop-filter: blur(4px);
+  border: 1px solid #fff3;
   border-radius: 1rem;
-  padding: 3rem 2rem;
+  padding: 2rem 1rem;
   z-index: 1;
   transition: all 0.2s ease-in-out;
+  overflow: hidden;
 }
 .container h1 {
   display: flex;
@@ -40,13 +42,30 @@ body {
   user-select: none;
   font-size: 1.75rem;
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .container {
-    padding: 2rem 1rem;
-    box-shadow: 0 0 8px #fff7;
+    padding: 1rem;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
   }
-  .container h1 {
-    font-size: 1.5rem;
+}
+
+#btnVisualizer {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+  padding: 0.25rem 1rem;
+  border-radius: 999rem;
+  border: none;
+  user-select: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  > svg {
+    pointer-events: none;
   }
 }
 
@@ -61,23 +80,33 @@ body {
   padding-top: 1rem;
 }
 #badges > button {
-  font-size: x-small;
+  font-size: 0.75rem;
   padding: 0.125rem 0.625rem;
   border-radius: 999rem;
   border: none;
   color: whitesmoke;
   background-color: rebeccapurple;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
   user-select: none;
-  text-transform: uppercase;
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: 0.1rem;
-  box-shadow: 0 1px 1px #0005;
+  text-transform: lowercase;
+  box-shadow: 0 1px 1px #0007;
 }
 #badges > button:nth-of-type(even) {
   background-color: teal;
+}
+
+.animation {
+  animation: animate 0.25s;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 canvas {
