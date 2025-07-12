@@ -9,7 +9,7 @@
     <script type="module" src="main.js" defer></script>
   </head>
   <body>
-    <div class="container">
+    <div class="container animation">
       <h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@
           <path d="M18 5v13" />
           <path d="M22 10v3" />
         </svg>
-        <em>Audio Visualizer</em>
+        <p>Audio Visualizer</p>
       </h1>
       <div id="audioContainer">
         <audio id="audio" controls></audio>
@@ -58,13 +58,16 @@
           Click to Visualize
         </button>
       </div>
-      <input type="file" id="file" accept="audio/*" hidden />
-      <div id="fileContainer" style="display: none">
+
+      <div id="fileContainer" style="display: none" class="animation">
         <label for="file" id="labelFile">Select Audio:</label>
+        <input type="file" id="file" accept="audio/*" hidden />
         <button id="btnFile">No Audio...</button>
       </div>
 
-      <div id="badges"></div>
+      <div id="badges">
+        <hr id="line" />
+      </div>
     </div>
     <canvas id="canvas"></canvas>
   </body>

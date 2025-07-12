@@ -45,11 +45,8 @@ btnVisualizer.addEventListener("click", (e) => {
   audio.src = "/assets/audios/never-back-down.ogg";
   audio.play();
   audio.loop = true;
-  e.target.disabled = true;
   e.target.style.display = "none";
   fileContainer.style.display = "flex";
-  // btnFile.innerText = "Visualizer";
-  // labelFile.innerText = "Current Audio:";
   setupAudio(audio);
   draw();
 });
@@ -57,17 +54,17 @@ btnVisualizer.addEventListener("click", (e) => {
 fileInput.addEventListener("change", async (e) => {
   const file = e.target.files[0];
   if (!file) return;
-  // console.log(file);
-  const base64 = await convertAudioToBase64(file);
-  addBadge({ name: file.name, src: base64 });
+  let src = URL.createObjectURL(file);
   btnVisualizer.disabled = false;
   btnVisualizer.style.display = "none";
   btnFile.innerText = file.name;
   labelFile.innerText = "Current Audio: ";
+  line.style.display = "flex";
 
-  audio.src = URL.createObjectURL(file);
+  audio.src = src;
   audio.play();
   audio.loop = true;
+  addBadge({ name: file.name, src });
   setupAudio(audio);
   draw();
 });
@@ -92,8 +89,6 @@ function draw() {
   analyser.getByteFrequencyData(dataArray);
 
   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-  // canvasCtx.fillStyle = "rgba(0, 0, 0, 0.1)";
-  // canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
 
   const barWidth = (WIDTH / bufferLength) * 10;
   let barHeight;
