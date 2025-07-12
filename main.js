@@ -1,5 +1,3 @@
-import { convertAudioToBase64 } from "./utils.js";
-
 const audio = document.getElementById("audio");
 const fileInput = document.getElementById("file");
 const canvas = document.getElementById("canvas");
@@ -17,6 +15,8 @@ const btnFile = document.getElementById("btnFile");
 const btnVisualizer = document.getElementById("btnVisualizer");
 const labelFile = document.getElementById("labelFile");
 const fileContainer = document.getElementById("fileContainer");
+const line = document.getElementById("line");
+const planet = document.getElementById("planet");
 
 btnFile.addEventListener("click", () => fileInput.click());
 
@@ -24,29 +24,26 @@ function addBadge(file) {
   const button = document.createElement("button");
   button.innerText = file.name;
   button.id = String(Date.now());
-  document.getElementById("badges").appendChild(button);
   button.classList.add("animation");
+  document.getElementById("badges").appendChild(button);
 
-  button.addEventListener("click", (e) => {
-    e.preventDefault();
+  button.addEventListener("click", () => {
     audio.src = file.src;
     audio.play();
     audio.loop = true;
+    btnFile.innerText = file.name;
     setupAudio(audio);
     draw();
-
-    btnVisualizer.disabled = false;
-    btnFile.innerText = file.name;
   });
 }
 
 btnVisualizer.addEventListener("click", (e) => {
-  e.preventDefault();
   audio.src = "/assets/audios/never-back-down.ogg";
   audio.play();
   audio.loop = true;
   e.target.style.display = "none";
   fileContainer.style.display = "flex";
+  planet.style.animationPlayState = "running";
   setupAudio(audio);
   draw();
 });
@@ -54,9 +51,7 @@ btnVisualizer.addEventListener("click", (e) => {
 fileInput.addEventListener("change", async (e) => {
   const file = e.target.files[0];
   if (!file) return;
-  let src = URL.createObjectURL(file);
-  btnVisualizer.disabled = false;
-  btnVisualizer.style.display = "none";
+  const src = URL.createObjectURL(file);
   btnFile.innerText = file.name;
   labelFile.innerText = "Current Audio: ";
   line.style.display = "flex";
@@ -80,7 +75,6 @@ function setupAudio(audio) {
   analyser.fftSize = 2048;
   bufferLength = analyser.frequencyBinCount;
   dataArray = new Uint8Array(bufferLength);
-
   analyser.getByteTimeDomainData(dataArray);
 }
 

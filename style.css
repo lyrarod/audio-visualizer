@@ -25,8 +25,8 @@ body {
   justify-content: center;
   align-items: center;
   row-gap: 1rem;
-  background-color: #0007;
-  box-shadow: 0 0 2rem 0 teal;
+  background-color: #0009;
+  box-shadow: 0 0 2rem 0.5rem teal;
   backdrop-filter: blur(4px);
   border-radius: 2rem;
   padding: 2rem;
@@ -37,8 +37,6 @@ body {
   h1 {
     display: flex;
     align-items: center;
-    column-gap: 0.5rem;
-    font-size: 1.5rem;
     font-style: italic;
     user-select: none;
     background: #008080;
@@ -46,16 +44,17 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    svg {
-      /* color: rebeccapurple; */
-    }
   }
 }
+
 @media (max-width: 700px) {
   .container {
     margin: 1rem;
     box-shadow: 0 0 1rem teal;
+
+    h1 {
+      font-size: 1.75rem;
+    }
   }
 }
 #audioContainer {
@@ -168,9 +167,42 @@ body {
 
 canvas {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  user-select: none;
+  background-image: url("/assets/stars_small_1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+#planet {
+  position: fixed;
+  top: 0;
+  left: 0;
+  translate: 0 0;
+  max-width: 512px;
+  transition: all 0.2s ease-in-out;
+  animation: planetRotate 60s linear infinite;
+  animation-play-state: paused;
   z-index: -1;
+
+  @media screen and (max-width: 700px) {
+    max-width: 256px;
+    left: 50%;
+    translate: -50% 0;
+  }
+}
+
+@keyframes planetRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
