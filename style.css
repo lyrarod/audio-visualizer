@@ -34,11 +34,11 @@ body {
   overflow: hidden;
   transition: all 0.2s ease-in-out;
 
-  > h1 {
+  h1 {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     font-style: italic;
     user-select: none;
     background: #008080;
@@ -48,7 +48,7 @@ body {
     -webkit-text-fill-color: transparent;
 
     svg {
-      color: #008080;
+      /* color: rebeccapurple; */
     }
   }
 }
@@ -59,7 +59,7 @@ body {
   }
 }
 #audioContainer {
-  width: 100%;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,10 +71,7 @@ body {
 
   audio {
     background-color: transparent;
-    /* background: linear-gradient(to right, #008080 0%, #00ffff 100%); */
     border: 1px solid teal;
-    /* box-shadow: 0 0 1.5rem 0 #fff9; */
-    /* backdrop-filter: blur(4px); */
     border-radius: 999rem;
     padding: 1rem;
   }
@@ -106,7 +103,6 @@ body {
   align-items: center;
   justify-content: center;
   column-gap: 0.25rem;
-  padding: 0.25rem 1rem;
   border-radius: 999rem;
   border: none;
   font-weight: 500;
