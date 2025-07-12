@@ -13,9 +13,12 @@ let analyser = null;
 let bufferLength = null;
 let dataArray = null;
 
+const btnFile = document.getElementById("btnFile");
 const btnVisualizer = document.getElementById("btnVisualizer");
+const labelFile = document.getElementById("labelFile");
+const fileContainer = document.getElementById("fileContainer");
 
-let badges = [];
+btnFile.addEventListener("click", () => fileInput.click());
 
 function addBadge(file) {
   const button = document.createElement("button");
@@ -33,17 +36,7 @@ function addBadge(file) {
     draw();
 
     btnVisualizer.disabled = false;
-  });
-
-  badges.unshift(button);
-
-  // loadBadges();
-  return button;
-}
-
-function loadBadges() {
-  badges?.map((badge) => {
-    document.getElementById("badges").appendChild(badge);
+    btnFile.innerText = file.name;
   });
 }
 
@@ -53,6 +46,10 @@ btnVisualizer.addEventListener("click", (e) => {
   audio.play();
   audio.loop = true;
   e.target.disabled = true;
+  e.target.style.display = "none";
+  fileContainer.style.display = "flex";
+  // btnFile.innerText = "Visualizer";
+  // labelFile.innerText = "Current Audio:";
   setupAudio(audio);
   draw();
 });
@@ -62,8 +59,11 @@ fileInput.addEventListener("change", async (e) => {
   if (!file) return;
   // console.log(file);
   const base64 = await convertAudioToBase64(file);
-  const badge = addBadge({ name: file.name, src: base64 });
+  addBadge({ name: file.name, src: base64 });
   btnVisualizer.disabled = false;
+  btnVisualizer.style.display = "none";
+  btnFile.innerText = file.name;
+  labelFile.innerText = "Current Audio: ";
 
   audio.src = URL.createObjectURL(file);
   audio.play();
@@ -100,7 +100,7 @@ function draw() {
   let x = 0;
 
   for (let i = 0; i < bufferLength; i++) {
-    barHeight = dataArray[i] * 2;
+    barHeight = dataArray[i] * 2.5;
 
     canvasCtx.fillStyle = `hsl(${barHeight}, 50%, 50%)`;
     canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);

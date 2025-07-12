@@ -19,21 +19,20 @@ body {
 
 .container {
   width: 100%;
-  max-width: 768px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 1.5rem;
+  row-gap: 1rem;
   background-color: transparent;
-  box-shadow: 0 1rem 1rem #0007;
+  box-shadow: 0 0 1rem #fff9;
   backdrop-filter: blur(4px);
-  border: 1px solid #fff3;
   border-radius: 1rem;
-  padding: 2rem 1rem;
+  padding: 1rem;
   z-index: 1;
-  transition: all 0.2s ease-in-out;
   overflow: hidden;
+  transition: all 0.2s ease-in-out;
 }
 .container h1 {
   display: flex;
@@ -44,21 +43,56 @@ body {
 }
 @media (max-width: 768px) {
   .container {
-    padding: 1rem;
-    box-shadow: none;
-    border: none;
-    border-radius: 0;
+    margin: 1rem;
+    box-shadow: 0 0 0.5rem #fff7;
   }
 }
-
-#btnVisualizer {
+#audioContainer {
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  position: relative;
+}
+#labelFile {
+  font-size: 0.875rem;
+  user-select: none;
+}
+#btnFile {
+  padding: 0.125rem 0.625rem;
+  border-radius: 999rem;
+  border: none;
+  user-select: none;
+  font-size: 0.75rem;
+}
+#fileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 0.5rem;
+}
+#btnVisualizer {
+  width: 302px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   column-gap: 0.5rem;
   padding: 0.25rem 1rem;
   border-radius: 999rem;
   border: none;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
   user-select: none;
+  background-color: teal;
+  text-transform: uppercase;
+  position: absolute;
 
   &:disabled {
     cursor: not-allowed;
