@@ -10,6 +10,9 @@ let source = null;
 let analyser = null;
 let bufferLength = null;
 let dataArray = null;
+let bw = null;
+let bh = null;
+let gap = null;
 
 const btnFile = document.getElementById("btnFile");
 const btnVisualizer = document.getElementById("btnVisualizer");
@@ -17,6 +20,25 @@ const labelFile = document.getElementById("labelFile");
 const fileContainer = document.getElementById("fileContainer");
 const line = document.getElementById("line");
 const planet = document.getElementById("planet");
+
+const mediaQueryList = window.matchMedia(`(width <= 700px)`);
+
+const handleChange = ({ matches }) => {
+  if (matches) {
+    // console.log("Mobile");
+    bw = 40;
+    bh = 1.5;
+    gap = 1;
+  } else {
+    // console.log("Desktop");
+    bw = 10;
+    bh = 2.5;
+    gap = 2;
+  }
+};
+handleChange(mediaQueryList);
+
+mediaQueryList.addEventListener("change", handleChange);
 
 btnFile.addEventListener("click", () => fileInput.click());
 
@@ -75,25 +97,25 @@ function setupAudio(audio) {
   analyser.fftSize = 2048;
   bufferLength = analyser.frequencyBinCount;
   dataArray = new Uint8Array(bufferLength);
-  analyser.getByteTimeDomainData(dataArray);
 }
 
 function draw() {
   requestAnimationFrame(draw);
+  analyser.getByteTimeDomainData(dataArray);
   analyser.getByteFrequencyData(dataArray);
 
   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
-  const barWidth = (WIDTH / bufferLength) * 10;
+  const barWidth = (WIDTH / bufferLength) * bw;
   let barHeight;
   let x = 0;
 
   for (let i = 0; i < bufferLength; i++) {
-    barHeight = dataArray[i] * 2.5;
+    barHeight = dataArray[i] * bh;
 
     canvasCtx.fillStyle = `hsl(${barHeight}, 50%, 50%)`;
     canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 
-    x += barWidth + 5;
+    x += barWidth + gap;
   }
 }
