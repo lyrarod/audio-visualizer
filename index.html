@@ -12,8 +12,32 @@
     <div class="container animation">
       <h1>Audio Visualizer</h1>
 
+      <!-- // audio container -->
       <div id="audioContainer">
         <audio id="audio" controls></audio>
+
+        <!-- // current audio -->
+        <div id="currentAudioContainer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-file-music-icon lucide-file-music"
+          >
+            <path d="M10.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v8.4" />
+            <path d="M8 18v-7.7L16 9v7" />
+            <circle cx="14" cy="16" r="2" />
+            <circle cx="6" cy="18" r="2" />
+          </svg>
+          <span id="currentAudio"></span>
+        </div>
+
         <button id="btnVisualizer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,17 +62,37 @@
         </button>
       </div>
 
-      <div id="fileContainer" style="display: none" class="animation">
-        <label for="file" id="labelFile">Select Audio:</label>
-        <input type="file" id="file" accept="audio/*" hidden />
-        <button id="btnFile">No Audio...</button>
-      </div>
-
+      <!-- // badges -->
       <div id="badges">
         <hr id="line" />
       </div>
     </div>
+
+    <!-- // canvas -->
     <canvas id="canvas"></canvas>
-    <img src="/assets/Terrestrial_01-512x512.png" alt="" id="planet" />
+
+    <!-- // planet -->
+    <img src="/assets/image/earth.png" alt="" id="planet" />
+
+    <!-- // file -->
+    <label for="file" id="labelFile">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-upload-icon lucide-upload"
+      >
+        <path d="M12 3v12" />
+        <path d="m17 8-5-5-5 5" />
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      </svg>
+      <input type="file" id="file" accept="audio/*" hidden />
+    </label>
   </body>
 </html>

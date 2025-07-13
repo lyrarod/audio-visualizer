@@ -10,27 +10,26 @@ let source = null;
 let analyser = null;
 let bufferLength = null;
 let dataArray = null;
-let bw = null;
-let bh = null;
-let gap = null;
+let bw = 0;
+let bh = 0;
+let gap = 0;
 
 const btnFile = document.getElementById("btnFile");
 const btnVisualizer = document.getElementById("btnVisualizer");
 const labelFile = document.getElementById("labelFile");
-const fileContainer = document.getElementById("fileContainer");
 const line = document.getElementById("line");
 const planet = document.getElementById("planet");
+const currentAudioContainer = document.getElementById("currentAudioContainer");
+const currentAudio = document.getElementById("currentAudio");
 
 const mediaQueryList = window.matchMedia(`(width <= 700px)`);
 
 const handleChange = ({ matches }) => {
   if (matches) {
-    // console.log("Mobile");
-    bw = 40;
-    bh = 1.5;
+    bw = 20;
+    bh = 2;
     gap = 1;
   } else {
-    // console.log("Desktop");
     bw = 10;
     bh = 2.5;
     gap = 2;
@@ -39,8 +38,6 @@ const handleChange = ({ matches }) => {
 handleChange(mediaQueryList);
 
 mediaQueryList.addEventListener("change", handleChange);
-
-btnFile.addEventListener("click", () => fileInput.click());
 
 function addBadge(file) {
   const button = document.createElement("button");
@@ -53,17 +50,23 @@ function addBadge(file) {
     audio.src = file.src;
     audio.play();
     audio.loop = true;
-    btnFile.innerText = file.name;
+    displayCurrentAudioContainer(file.name);
     setupAudio(audio);
     draw();
   });
 }
 
+function displayCurrentAudioContainer(name = "No audio") {
+  if (fileInput.files.length > 0) {
+    currentAudio.innerText = name;
+    currentAudioContainer.style.display = "flex";
+  }
+}
+
 btnVisualizer.addEventListener("click", (e) => {
   e.target.style.display = "none";
-  fileContainer.style.display = "flex";
   planet.style.animationPlayState = "running";
-  audio.src = "/assets/audios/chrono-trigger.ogg";
+  audio.src = "/assets/audio/chrono-trigger.ogg";
   audio.play();
   audio.loop = true;
   setupAudio(audio);
@@ -74,9 +77,10 @@ fileInput.addEventListener("change", async (e) => {
   const file = e.target.files[0];
   if (!file) return;
   const src = URL.createObjectURL(file);
-  btnFile.innerText = file.name;
-  labelFile.innerText = "Current Audio: ";
   line.style.display = "flex";
+  btnVisualizer.style.display = "none";
+  planet.style.animationPlayState = "running";
+  displayCurrentAudioContainer(file.name);
 
   audio.src = src;
   audio.play();
