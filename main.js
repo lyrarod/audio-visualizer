@@ -38,12 +38,12 @@ function addBadge(file) {
 }
 
 btnVisualizer.addEventListener("click", (e) => {
-  audio.src = "/assets/audios/never-back-down.ogg";
-  audio.play();
-  audio.loop = true;
   e.target.style.display = "none";
   fileContainer.style.display = "flex";
   planet.style.animationPlayState = "running";
+  audio.src = "/assets/audios/chrono-trigger.ogg";
+  audio.play();
+  audio.loop = true;
   setupAudio(audio);
   draw();
 });

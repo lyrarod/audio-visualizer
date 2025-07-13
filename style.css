@@ -14,6 +14,10 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-image: url("/assets/stars_small_1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -172,11 +176,6 @@ canvas {
   width: 100%;
   height: 100%;
   max-width: 100%;
-  user-select: none;
-  background-image: url("/assets/stars_small_1.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   z-index: 0;
 }
 
@@ -184,7 +183,7 @@ canvas {
   position: fixed;
   top: 0;
   left: 0;
-  translate: 0 0;
+  width: 100%;
   max-width: 512px;
   transition: all 0.2s ease-in-out;
   animation: planetRotate 60s linear infinite;
